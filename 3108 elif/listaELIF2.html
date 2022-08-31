@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELIF Ex 2</title>
+</head>
+
+<body>
+    <input type="text" id="ipt_rendamensal" placeholder="Informe a renda familiar mensal">
+    <br>
+    <button onclick="analisar()">Analisar renda</button>
+    <div id="div_msg"></div>
+</body>
+
+</html>
+<script>
+    function analisar() {
+        var rendamensal = Number(ipt_rendamensal.value)
+        if (rendamensal <= 250) {
+            div_msg.innerHTML = "Classe E"
+        } else if (rendamensal <= 900) {
+            div_msg.innerHTML = "Classe D"
+        } else if (rendamensal <= 2500) {
+            div_msg.innerHTML = "Classe C"
+        } else if (rendamensal <= 9500) {
+            div_msg.innerHTML = "Classe B"
+        } else {
+            div_msg.innerHTML = "Classe A"
+        }
+    }
+</script>

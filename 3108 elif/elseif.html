@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 10 else if</title>
+</head>
+<body>
+    <h1>Verificando o saldo</h1>
+    Informe o seu saldo
+    <input type="text" id="ipt_saldo"><br><br>
+    <button onclick="verificar()">Verificar</button>
+    <br>
+    <div id="div_msg"></div>
+</body>
+</html>
+<script>
+    function verificar() {
+        var aux_saldo = Number(ipt_saldo.value)
+        if (aux_saldo > 5000) {
+            div_msg.innerHTML = "Investidor"
+        } else if (aux_saldo > 2000) {
+            div_msg.innerHTML = "Acima da média"
+        } else if (aux_saldo >= 0) {
+            div_msg.innerHTML = "Normal"
+        } else {
+            div_msg.innerHTML = "Devedor"
+        }
+    }
+</script>

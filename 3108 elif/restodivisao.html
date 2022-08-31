@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resto divisão</title>
+</head>
+
+<body>
+    <h1>Calcule o resto da divisão</h1>
+    Entre com o primeiro número: <br>
+    <input type="text" id="ipt_primeiro">
+    <br>
+    <br>
+    Entre com o segundo número: <br>
+    <input type="text" id="ipt_segundo">
+    <br>
+    <br>
+    <button onclick="calcular()">Qual o resto da divisão entre esses dois números?</button>
+</body>
+
+</html>
+<script>
+    function calcular() {
+        var ax_num1 = Number(ipt_primeiro.value);
+        var ax_num2 = Number(ipt_segundo.value);
+        alert(ax_num1 % ax_num2)
+        if (ax_num1 % ax_num2 == 0) {
+            alert("é divisível")
+        } else {
+            alert("não é divisível")
+        }
+    }
+</script>

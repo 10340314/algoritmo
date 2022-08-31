@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELIF Ex 5</title>
+</head>
+
+<body>
+    <input type="text" id="ipt_n1" placeholder="Informe a nota 1">
+    <br>
+    <input type="text" id="ipt_n2" placeholder="Informe a nota 2">
+    <br>
+    <input type="text" id="ipt_n3" placeholder="Informe a nota 3">
+    <br>
+    <button onclick="classificar()">Classificar aluno</button>
+    </body>
+
+</html>
+<script>
+    function classificar() {
+        var media = (Number(ipt_n1.value) + Number(ipt_n2.value) + Number(ipt_n3.value))/3
+        if (media > 9.5) {
+            alert("Aluno fora da curva")
+        } else if (media > 7) {
+            alert("Aluno acima da média")
+        } else if (media >= 5) {
+            alert("Aluno na média")
+        } else {
+            alert("Aluno precisa de muita ajuda")
+        }
+    }
+</script>

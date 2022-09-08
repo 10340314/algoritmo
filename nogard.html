@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoGard</title>
+</head>
+
+<body>
+    Informe o nome do atleta: <br>
+    <input type="text" id="ipt_nome"> <br>
+    Informe a faixa conquistada <br>
+    <input type="text" id="ipt_faixa"> <br>
+    Qtd. vitórias: <input type="text" id="ipt_vit"> <br>
+    Qtd. empates: <input type="text" id="ipt_empates"> <br>
+    Qtd. derrotas <input type="text" id="ipt_derrotas"> <br>
+    <button onclick="exibir()">Exibir</button> <br>
+    <div id="div_msg"></div>
+</body>
+
+</html>
+<script>
+    var pontosBase = 0
+    function exibir() {
+        var pontosVitLuta = 0
+        var pontosDerLuta = 0
+        var vit = Number(ipt_vit.value)
+        var emp = Number(ipt_empates.value)
+        var der = Number(ipt_derrotas.value)
+        var totalPartidas = vit + emp + der
+        if (ipt_faixa.value == "Branco") {
+            pontosBase = 0
+            pontosVitLuta = 4
+            pontosDerLuta = 2
+        } else if (ipt_faixa.value == "Azul") {
+            pontosBase = 1000
+            pontosVitLuta = 10
+            pontosDerLuta = 5
+        } else if (ipt_faixa.value == "Amarela") {
+            pontosBase = 2000
+            pontosVitLuta = 30
+            pontosDerLuta = 15
+        } else if (ipt_faixa.value == "Laranja") {
+            pontosBase = 5000
+            pontosVitLuta = 60
+            pontosDerLuta = 30
+        } else if (ipt_faixa.value == "Verde") {
+            pontosBase = 10000
+            pontosVitLuta = 100
+            pontosDerLuta = 50
+        } else if (ipt_faixa.value == "Roxa") {
+            pontosBase = 15000
+            pontosVitLuta = 150
+            pontosDerLuta = 75
+        } else if (ipt_faixa.value == "Marrom") {
+            pontosBase = 25000
+            pontosVitLuta = 300
+            pontosDerLuta = 150
+        } else if (ipt_faixa.value == "Preta") {
+            pontosBase = 50000
+            pontosVitLuta = 500
+            pontosDerLuta = 250
+        }
+        var pontosTotal = pontosBase + pontosVitLuta * vit + emp * 2 - pontosDerLuta * der 
+        var ptsVitAll = pontosBase + pontosVitLuta * totalPartidas
+        var pontosLuta = pontosTotal - pontosBase
+
+        div_msg.innerHTML += `${ipt_nome.value} da faixa ${ipt_faixa.value} tem ${pontosTotal} pontos, 
+                              sendo ${(pontosBase/pontosTotal*100).toFixed(2)}% dos pontos iniciais da faixa e 
+                              ${(pontosLuta/pontosTotal*100).toFixed(2)}% em pontos conquistados em lutas. <br>
+                              Total de lutas: ${totalPartidas} sendo ${(vit/totalPartidas*100).toFixed(2)}% vitórias e 
+                              ${((der+emp)/totalPartidas*100).toFixed(2)}% derrotas e empates <br>
+                              Se ${ipt_nome.value} tivesse vitória em todas as lutas ele teria ${ptsVitAll} pontos,
+                              hoje ele tem ${(pontosTotal/ptsVitAll*100).toFixed(2)}% do total <br> <br>`
+    }
+</script>

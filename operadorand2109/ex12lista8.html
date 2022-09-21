@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 12 - Lista AND</title>
+</head>
+
+<body>
+    <h3>Cartão fidelidade - Metrô SP</h3>
+    Qtd de passagens que irá adquirir: <input type="text" id="ipt_passagens">
+    <br>
+    <button onclick="comprar()">Comprar</button>
+    <br>
+    <div id="div_msg"></div>
+</body>
+
+</html>
+<script>
+    function comprar() {
+        var passagens = ipt_passagens.value
+        var valorp = 4.4
+        var total = 0
+        if (passagens >= 8 && passagens <= 50) {
+            if (passagens <= 19) {
+                valorp *= 0.97
+            } else if (passagens <= 49) {
+                valorp *= 0.95
+            } else if (passagens == 50) {
+                valorp *= 0.93
+            }
+            total = valorp * passagens
+            div_msg.innerHTML = `Total a pagar: R$${total.toFixed(2)}`
+        } else {
+            div_msg.innerHTML = 'Quantidade inválida para a Fidelidade!'
+        }
+    }
+
+</script>

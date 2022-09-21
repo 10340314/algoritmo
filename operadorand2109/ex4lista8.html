@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 4 - Lista AND</title>
+</head>
+
+<body>
+    <h1>Veganismo</h1>
+    Café da manhã: <select id="sel_cafe">
+                   <option value="ovos">Ovos</option>
+                   <option value="leitearroz">Leite de arroz</option>
+                   <option value="bacon">Bacon</option>
+    </select>
+    <br>
+    Almoço: <select id="sel_almoco">
+            <option value="bife">Bife</option>
+            <option value="hsoja">Hamburguer de soja</option>
+            <option value="frangog">Frango grelhado</option>
+    </select>
+    <br>
+    Janta: <select id="sel_janta">
+           <option value="picsoja">Picanha de soja</option>
+           <option value="cupim">Cupim</option>
+           <option value="coracao">Coração</option>
+    </select>
+    <br>
+    <button onclick="verificar()">Sou vegano</button>
+</body>
+
+</html>
+<script>
+    function verificar() {
+        var cafe = sel_cafe.value
+        var almoco = sel_almoco.value
+        var janta = sel_janta.value
+        if (cafe == "leitearroz" && almoco == "hsoja" && janta == "picsoja") {
+            alert("Sim, você é vegano!")
+        } else {
+            alert("Não, você não é vegano")
+        }
+    }
+</script>

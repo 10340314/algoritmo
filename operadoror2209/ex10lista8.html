@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 10 - Lista 8 OR</title>
+</head>
+
+<body>
+    Informe o nome da empresa: <input type="text" id="ipt_empresa">
+    <br>
+    Informe o valor da bolsa da empresa: <input type="text" id="ipt_bolsa">
+    <br>
+    Informe o valor do VR da empresa: <input type="text" id="ipt_vr">
+    <br>
+    Informe o tempo de deslocamento da empresa para SPTECH: <input type="text" id="ipt_tempo">
+    <br>
+    <button onclick="verificar()">É preferida?</button>
+    <br>
+    <pre id="pre_msg" style="font-size: large"></pre>
+</body>
+
+</html>
+
+<script>
+    function verificar() {
+        var empresa = ipt_empresa.value
+        var bolsa = ipt_bolsa.value
+        var vr = ipt_vr.value
+        var tempo = ipt_tempo.value
+
+        if (bolsa >= 1800 || vr >= 20 || tempo <= 30) {
+            pre_msg.innerHTML = `A empresa ${empresa} é uma de suas preferências.`
+        } else {
+            pre_msg.innerHTML = `A empresa ${empresa} está fora da sua lista.`
+        }
+    }
+</script>

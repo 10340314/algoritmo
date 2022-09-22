@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 8 - Lista 8 OR</title>
+</head>
+
+<body>
+    <h1>Calculadora de cansaço aprimorada do aluno SPTech</h1>
+    Meio de transporte: <select id="sel_transporte">
+                        <option value="onibus">Ônibus</option>
+                        <option value="metro">Metrô</option>
+                        <option value="carro">Carro</option>
+                        <option value="bicicleta">Bicicleta</option>
+                        </select>
+    <br>
+    Distância da faculdade (KM): <input type="text" id="ipt_distancia">
+    <br>
+    <button onclick="calcular()">Calcular cansaço</button>
+</body>
+
+</html>
+
+<script>
+    function calcular() {
+        var transporte = sel_transporte.value
+        var distancia = ipt_distancia.value
+
+        if (distancia <= 10) {
+            if (transporte == 'carro' || transporte == 'metro' || transporte == 'onibus') {
+                alert('Tá tranks...')
+            } else {
+                alert('É... um pouco cansado...')
+            }
+        } else {
+            if (transporte == 'carro') {
+                alert('É... um pouco cansado...')
+            } else if (transporte == 'metro' || transporte == 'onibus') {
+                alert('Bem cansado...')
+            } else {
+                alert('Vish... tá só o pó...')
+            }
+        } 
+    }
+</script>

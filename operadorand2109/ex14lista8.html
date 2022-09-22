@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 14 - Lista 8 AND</title>
+</head>
+
+<body>
+    <div id="div_alturas">
+        <h3>Intervalo das alturas dos pilotos:</h3>
+        <br>
+        Altura inicial: <input type="text" id="ipt_pilinicial">
+        <br>
+        Altura final: <input type="text" id="ipt_pilfinal">
+        <br>
+        <br>
+        <h3>Intervalo das alturas dos jogadores de basquete:</h3>
+        Altura inicial: <input type="text" id="ipt_basinicial">
+        <br>
+        Altura final: <input type="text" id="ipt_basfinal">
+        <br>
+        <br>
+        <button onclick="selecionar()">Selecionar</button>
+    </div>
+
+
+</body>
+
+</html>
+
+<script>
+    var pilinicial = 0
+    var pilfinal = 0
+    var basinicial = 0
+    var basfinal = 0
+    function selecionar() {
+        pilinicial = ipt_pilinicial.value
+        pilfinal = ipt_pilfinal.value
+        basinicial = ipt_basinicial.value
+        basfinal = ipt_basfinal.value
+
+        if ((pilinicial > 1 && pilfinal > pilinicial) && (basinicial > 1.5 && basfinal > basinicial)) {
+            div_alturas.innerHTML = `<h1>Processo de seleção de novos atletas</h1>
+                                     <h2>Critério de seleção de piloto -- altura entre ${pilinicial} até ${pilfinal}</h2>
+                                     <h2>Critério de seleção de jogador de basquete -- altura entre ${basinicial} até ${basfinal}</h2>
+                                     <br>
+                                     Nome do candidato: <input type="text" id="ipt_nome">
+                                     <br>
+                                     Altura do candidato: <input type="text" id="ipt_altura">
+                                     <br>
+                                     Modalidade do candidato: <select id="sel_mod">
+                                                              <option value="0">--Selecione uma opção</option>
+                                                              <option value="piloto">Piloto</option>
+                                                              <option value="basq">Jogador de basquete</option>
+                                                              </select>
+                                     <br>
+                                     <button onclick="modal()">Verificar</button>
+                                     <div id="div_msg"></div>
+                                     `
+        } else {
+            alert('Insira alturas válidas!')
+        }
+    }
+
+    function modal() {
+            var nome = ipt_nome.value
+            var altura = ipt_altura.value
+            var modalidade = sel_mod.value
+
+            if (modalidade == 'piloto') {
+                if (altura >= pilinicial && altura <= pilfinal) {
+                    div_msg.innerHTML += `<br>
+                                          <br>
+                                          O candidato ${nome} com altura de ${altura} participará do processo de seleção de piloto.`
+                } else {
+                    div_msg.innerHTML += `<br>
+                                          <br>
+                                          Infelizmente o candidato ${nome} com altura de ${altura} não atende aos requisitos.`
+                }
+            } else if (modalidade == 'basq') {
+                if (altura >= basinicial && altura <= basfinal) {
+                    div_msg.innerHTML += `<br>
+                                          <br>
+                                          O candidato ${nome} com altura de ${altura} participará do processo de seleção de jogador de basquete.`
+                } else {
+                    div_msg.innerHTML += `<br>
+                                          <br>
+                                          Infelizmente o candidato ${nome} com altura de ${altura} não atende aos requisitos.`
+                }
+            }
+        }
+</script>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco 24h</title>
+</head>
+
+<body>
+    Informe a quantidade de cédulas de R$10: <input type="text" id="ipt_c10">
+    <br>
+    Informe a quantidade de cédulas de R$50: <input type="text" id="ipt_c50">
+    <br>
+    Informe a quantidade de cédulas de R$100: <input type="text" id="ipt_c100">
+    <br>
+    <button onclick="iniciar()">Iniciar</button>
+    <br>
+    <br>
+    Valor que deseja sacar: <input type="text" id="ipt_saque">
+    <br>
+    <button onclick="sacar()">Sacar</button>
+    <br>
+    <div id="div_msg"></div>
+</body>
+
+</html>
+
+<script>
+    var c10 = 0
+    var c50 = 0
+    var c100 = 0
+    var saldo = 0
+    var saque = 0
+    var resto = 0
+    var usar100 = 0
+    var usar50 = 0
+    var usar10 = 0
+
+    function iniciar() {
+        c10 = ipt_c10.value
+        c50 = ipt_c50.value
+        c100 = ipt_c100.value
+        saldo = c10*10+c50*50+c100*100
+        alert(saldo)
+    }
+
+    function sacar() {
+        saque = ipt_saque.value
+        var faltou = 0
+        if (saque <= 0) {
+            alert("Não é possível sacar 0 ou menos")
+        } else if (saque > saldo) {
+            alert("Montante disponível não atende a solicitação")
+        } else if (saque % 10 != 0) {
+            alert("Valor não possível devido às notas disponíveis")
+        } else {
+            resto = saque % 100
+            usar100 = Math.floor(saque/100)
+            if (usar100 > c100) {
+                faltou = usar100 - c100
+                usar100 = c100
+                resto += faltou*100
+            } else {
+                usar50 = Math.floor(resto/50)
+                resto = resto % 50
+                if (usar50 > c50) {
+                    faltou = usar50 - c50
+                    usar50 = 0
+                    resto += faltou*50
+                } else {
+                    usar10 = Math.floor(resto/10)
+                    resto = resto % 10
+                    if (usar10 > c10) {
+                        alert("A quantidade e valor das cédulas disponíveis não atende o valor requisitado")
+                    } else {
+                        saldo = saldo - usar10*10 - usar50*10 - usar100*100
+                        div_msg.innerHTML = `Cedulas de 10: ${usar10}
+                                             Cedulas de 50: ${usar50}
+                                             Cedulas de 100: ${usar100}`
+                    }
+                }
+            }
+        }
+    }
+</script>

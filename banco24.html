@@ -42,8 +42,7 @@
         c10 = ipt_c10.value
         c50 = ipt_c50.value
         c100 = ipt_c100.value
-        saldo = c10*10+c50*50+c100*100
-        alert(saldo)
+        saldo = c10 * 10 + c50 * 50 + c100 * 100
     }
 
     function sacar() {
@@ -51,37 +50,37 @@
         var faltou = 0
         if (saque <= 0) {
             alert("Não é possível sacar 0 ou menos")
-        } else if (saque > saldo) {
-            alert("Montante disponível não atende a solicitação")
         } else if (saque % 10 != 0) {
             alert("Valor não possível devido às notas disponíveis")
+        } else if (saque > saldo) {
+            alert("Montante disponível não atende a solicitação")
         } else {
             resto = saque % 100
-            usar100 = Math.floor(saque/100)
+            usar100 = Math.floor(saque / 100)
             if (usar100 > c100) {
                 faltou = usar100 - c100
                 usar100 = c100
-                resto += faltou*100
+                resto += faltou * 100
+            }
+            usar50 = Math.floor(resto / 50)
+            resto = resto % 50
+            if (usar50 > c50) {
+                faltou = usar50 - c50
+                usar50 = c50
+                resto += faltou * 50
+            }
+            usar10 = Math.floor(resto / 10)
+            resto = resto % 10
+            if (usar10 > c10) {
+                alert("A quantidade e valor das cédulas disponíveis não atende o valor requisitado")
             } else {
-                usar50 = Math.floor(resto/50)
-                resto = resto % 50
-                if (usar50 > c50) {
-                    faltou = usar50 - c50
-                    usar50 = 0
-                    resto += faltou*50
-                } else {
-                    usar10 = Math.floor(resto/10)
-                    resto = resto % 10
-                    if (usar10 > c10) {
-                        alert("A quantidade e valor das cédulas disponíveis não atende o valor requisitado")
-                    } else {
-                        saldo = saldo - usar10*10 - usar50*10 - usar100*100
-                        div_msg.innerHTML = `Cedulas de 10: ${usar10}
-                                             Cedulas de 50: ${usar50}
-                                             Cedulas de 100: ${usar100}`
-                    }
-                }
+                saldo = saldo - usar10 * 10 - usar50 * 50 - usar100 * 100
+                c10 = c10 - usar10
+                c50 = c50 - usar50
+                c100 = c100 - usar100
+                div_msg.innerHTML = `Retire no local indicado`
             }
         }
+        console.log(saldo)
     }
 </script>

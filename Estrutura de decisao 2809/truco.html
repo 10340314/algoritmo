@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRUCO</title>
+</head>
+
+<body>
+    Jogador 1: <select id="sel_j1">
+        <option value="normal">Carta normal</option>
+        <option value="ouros">Manilha de ouros</option>
+        <option value="espadas">Manilha de espadas</option>
+        <option value="copas">Manilha de copas</option>
+        <option value="paus">Manilha de paus</option>
+    </select>
+    <br>
+    Jogador 2: <select id="sel_j2">
+        <option value="normal">Carta normal</option>
+        <option value="ouros">Manilha de ouros</option>
+        <option value="espadas">Manilha de espadas</option>
+        <option value="copas">Manilha de copas</option>
+        <option value="paus">Manilha de paus</option>
+    </select>
+    <br>
+    <button onclick="jogar()">Jogar</button>
+</body>
+
+</html>
+
+<script>
+    function jogar() {
+        var j1 = sel_j1.value
+        var j2 = sel_j2.value
+        
+        if (j1 == j2) {
+            alert('Escolha as cartas corretamente!')
+        } else {
+            if (j1 == 'paus' || 
+                j1 == 'copas' && (j2 == 'espadas' || j2 == 'ouros' || j2 == 'normal') ||
+                j1 == 'espadas' && (j2 == 'ouros' || j2 == 'normal') ||
+                j1 == 'ouros' && j2 == 'normal') {
+                    alert('Jogador 1 ganhou!')
+                } else {
+                    alert('Jogador 2 ganhou')
+                }
+        }
+    }
+</script>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blackjack</title>
+</head>
+
+<body>
+    <h1>BLACKJACK</h1>
+    Carta 1: <select id="sel_c1">
+        <option value="as">AS</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="j">J</option>
+        <option value="q">Q</option>
+        <option value="k">K</option>
+    </select>
+    <br>
+    Carta 2: <select id="sel_c2">
+        <option value="as">AS</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="j">J</option>
+        <option value="q">Q</option>
+        <option value="k">K</option>
+    </select>
+    <br>
+    <button onclick="jogar()">Jogar!</button>
+</body>
+
+</html>
+
+<script>
+    function jogar() {
+        var c1 = sel_c1.value
+        var c2 = sel_c2.value
+
+        if (c1 == 'as' && (c2 == '10' || c2 == 'j' || c2 == 'q' || c2 == 'k') ||
+            c2 == 'as' && (c1 == '10' || c1 == 'j' || c1 == 'q' || c1 == 'k')) {
+            alert('BLACKJACK!')
+        }
+        else {
+            alert('Perdeu playboy')
+        }
+    }
+</script>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jokenpô</title>
+</head>
+
+<body>
+    <h1>Jokenpô</h1>
+    Jogador 1: <select id="sel_j1">
+        <option value="pedra">Pedra</option>
+        <option value="papel">Papel</option>
+        <option value="tesoura">Tesoura</option>
+    </select>
+    <br><br>
+    Jogador 2: <select id="sel_j2">
+        <option value="pedra">Pedra</option>
+        <option value="papel">Papel</option>
+        <option value="tesoura">Tesoura</option>
+    </select>
+    <br><br>
+    <button onclick="jogar()">Jogar!</button>
+    <div id="div_resultado"></div>
+
+</body>
+
+</html>
+
+<script>
+    function jogar() {
+        var j1 = sel_j1.value
+        var j2 = sel_j2.value
+
+        if (j1 == 'pedra' && j2 == 'tesoura' || 
+            j1 == 'papel' && j2 == 'pedra' || 
+            j1 == 'tesoura' && j2 == 'papel') {
+            div_resultado.innerHTML = `Jogador 1 jogou ${j1} | Jogador 2 jogou ${j2} <br>
+                                       Jogador 1 venceu!`
+        } else {
+            div_resultado.innerHTML = `Jogador 1 jogou ${j1} | Jogador 2 jogou ${j2} <br>
+                                       Jogador 2 venceu!`
+        }
+    }
+</script>

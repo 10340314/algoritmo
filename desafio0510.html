@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio</title>
+</head>
+<body>
+    Informe um número entre 10 e 100: <input type="text" id="ipt_numero">
+    <br>
+    <button onclick="registrar()">Registrar</button> <button onclick="analisar()">Analisar</button>
+    <br>
+    <div id="div_msg"></div>
+</body>
+</html>
+
+<script>
+    var cont = 0
+    var media = 0
+    var maior = 0
+    var menor = 101
+    var soma = 0
+    function registrar() {
+        var numero = Number(ipt_numero.value)
+        
+        if (Number.isNaN(numero)) {
+            alert('Digite um número válido')
+        } else if (numero < 10 || numero > 100) {
+            alert('Digite um número dentro do intervalo')
+        } else {
+            soma += numero
+            if (numero >= maior) {
+                maior = numero
+            }
+            if (numero <= menor) {
+                menor = numero
+            }
+            cont++
+            alert('Numero registrado!')
+        }
+        ipt_numero.value = ''
+        ipt_numero.focus()
+    }
+
+    function analisar() {
+        var i = 0
+        media = soma/cont
+        if (cont == 0) {
+            alert('Você não inseriu nenhum número')
+        } else {
+            div_msg.innerHTML = `Maior número: ${maior}<br>
+                                 Menor número: ${menor}<br>
+                                 Qtde de números: ${cont}<br>
+                                 Somatória: ${soma}<br>
+                                 Média: ${media}`
+        }
+    }
+</script>

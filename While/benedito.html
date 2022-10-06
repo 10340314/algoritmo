@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ex 24 - Lista WHILE</title>
+</head>
+
+<body>
+    <h3>Intervalo de números</h3>
+    Informe o número do limite inferior: <input type="text" id="ipt_inf">
+    <br>
+    Informe o número do limite superior: <input type="text" id="ipt_sup">
+    <br>
+    <button onclick="validar()">Analisar</button>
+    <br>
+    <div id="div_msg"></div>
+</body>
+
+</html>
+
+<script>
+    function validar() {
+        div_msg.innerHTML = ''
+        var inf = Number(ipt_inf.value)
+        var sup = Number(ipt_sup.value)
+
+        if (Number.isNaN(inf) || Number.isNaN(sup) || inf < 1 || sup < inf) {
+            alert('Insira um número válido')
+        } else {
+            analisar()
+        }
+    }
+
+    function analisar() {
+        var inf = Number(ipt_inf.value)
+        var primeiro = inf
+        var sup = Number(ipt_sup.value)
+        var qtdPrimos = 0
+        var primo = 'yes'
+
+        while (inf <= sup) {
+            div_msg.innerHTML += `<br>`
+            if (inf % 2 == 0) {
+                div_msg.innerHTML += `O número ${inf} é divisível por 2. `
+            }
+            if (inf % 3 == 0) {
+                div_msg.innerHTML += `O número ${inf} é divisível por 3. `
+            }
+            if (inf % 5 == 0) {
+                div_msg.innerHTML += `O número ${inf} é divisível por 5. `
+            }
+            if (inf % 7 == 0) {
+                div_msg.innerHTML += `O número ${inf} é divisível por 7. `
+            }
+            if (inf % 11 == 0) {
+                div_msg.innerHTML += `O número ${inf} é divisível por 11. `
+            }
+            if (inf % 13 == 0) {
+                div_msg.innerHTML += `O número ${inf} é divisível por 13. `
+            }
+            if (inf % (2 && 3 && 5 && 7 && 11 && 13) == 1) {
+                div_msg.innerHTML += `O número ${inf} não é divisível pelos principais números primos.`
+                primo = 'no'
+            }
+            if (primo == 'yes') {
+                qtdPrimos++
+            }
+            primo = 'yes'
+            inf++
+        }
+        div_msg.innerHTML += `<br>O intervalo de ${primeiro} a ${sup} tem ${sup - primeiro + 1} números, sendo que ${qtdPrimos} números são divisíveis por algum número primo.`
+    }
+
+</script>

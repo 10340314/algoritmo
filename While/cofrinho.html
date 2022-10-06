@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marco Nomico</title>
+</head>
+
+<body>
+    Informe quantos mirréis tinhas guardado no banco: <input type="text" id="ipt_guardado">
+    <br>
+    Informe quantos mirréis irás depositar a cada mês: <input type="text" id="ipt_deposito">
+    <br>
+    Informe por quantos meses irá depositar: <input type="text" id="ipt_mes">
+    <br>
+    <!-- Informe o percentual de juros por mês: <input type="text" id="ipt_juros">
+    <br> -->
+    <button onclick="poupar()">Vamos poupar!</button>
+    <br>
+    <div id="div_msg"></div>
+</body>
+
+</html>
+
+<script>
+    function poupar() {
+        div_msg.innerHTML = ''
+        var guard = Number(ipt_guardado.value)
+        var dep = Number(ipt_deposito.value)
+        var qtdMes = Number(ipt_mes.value)
+        // var juros = Number(ipt_juros.value)
+        
+        if (Number.isNaN(guard) || Number.isNaN(dep) || Number.isNaN(qtdMes)) {
+            alert('Digite valores válidos!')
+        } else if (dep <= 0) {
+            alert('Não pode depositar valores negativos ou zero')
+        } else if (qtdMes < 6 || qtdMes > 20) {
+            alert('A quantidade de meses tem que estar entre 6 e 20')
+        } else {
+            calcularpoup()
+        }
+        ipt_deposito.value = ''
+        ipt_guardado.value = ''
+        ipt_mes.value = ''
+    }
+
+    function calcularpoup() {
+        var guard = Number(ipt_guardado.value)
+        var dep = Number(ipt_deposito.value)
+        var qtdMes = Number(ipt_mes.value)
+        var cont = 0
+        var total = guard
+        var ant = 0
+        
+        while (cont < qtdMes) {
+            if (cont == 0) {
+                ant = guard
+            } else {
+                ant = total
+            }
+            total += dep
+            div_msg.innerHTML += `<br>Marco tinha R$${ant}, depois do depósito do ${++cont}º mês ele ficou com R$${total}`
+        }
+        div_msg.innerHTML += `<br>Você começou com R$${guard}<br>
+                              Durante os meses você poupou R$${qtdMes*dep}<br>
+                              E agora você tem R$${total}`
+    }
+</script>

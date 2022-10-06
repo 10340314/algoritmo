@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coca-cola</title>
+</head>
+
+<body>
+    Quantidade de coca-colas que você bebeu no ano: <input type="text" id="ipt_coca">
+    <br>
+    <button onclick="cocacola()">COCACOLA!</button>
+    <br>
+    <div id="div_msg"></div>
+</body>
+
+</html>
+
+<script>
+    function cocacola() {
+        div_msg.innerHTML = ``
+        var cont = 0
+        var qtdCoca = Number(ipt_coca.value)
+        while (cont < qtdCoca) {
+            if (cont % 10 == 0) {
+                div_msg.innerHTML += `<br>`
+            }
+            div_msg.innerHTML += `<img src="cocCOLa.jpg" width="50px" height="50px">`
+            cont++ 
+        }
+    }
+</script>

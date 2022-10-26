@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ex 11</title>
+</head>
+
+<body>
+    Limite inferior: <input type="text" id="ipt_liminf">
+    <br>
+    Limite superior: <input type="text" id="ipt_limsup">
+    <br>
+    Número a testar: <input type="text" id="ipt_num">
+    <br>
+    <button onclick="verificar()">Contar</button>
+    <br>
+    <div id="div_msg"></div>
+</body>
+
+</html>
+
+<script>
+    var liminf = 0
+    var limsup = 0
+    var num = 0
+
+    function verificar() {
+        div_msg.innerHTML = ""
+        liminf = Number(ipt_liminf.value)
+        limsup = Number(ipt_limsup.value)
+        num = Number(ipt_num.value)
+        var erro = "no"
+
+        if (liminf <= 1) {
+            div_msg.innerHTML += "O limite inferior deve ser maior do que 1<br>"
+            erro = "yes"
+        }
+        if (limsup >= 100) {
+            div_msg.innerHTML += "O limite superior deve ser menos do que 100<br>"
+            erro = "yes"
+        }
+        if (num < 3 || num > 10) {
+            div_msg.innerHTML += "O número a ser testado deve estar entre 3 e 10<br>"
+            erro = "yes"
+        }
+        if (erro != "yes") {
+            exibir()
+        }
+        ipt_liminf.value = ""
+        ipt_limsup.value = ""
+        ipt_num.value = ""
+    }
+
+    function exibir() {
+        for (var i = liminf; i <= limsup; i++) {
+            if (i % num) {
+                div_msg.innerHTML += `<br>${i}`
+            }
+        }
+    }
+</script>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ex 9</title>
+</head>
+
+<body>
+    Limite inferior: <input type="text" id="ipt_liminf">
+    <br>
+    Limite superior: <input type="text" id="ipt_limsup">
+    <br>
+    <button onclick="verificar()">Contar</button>
+    <br>
+    <div id="div_msg"></div>
+</body>
+
+</html>
+
+<script>
+    var liminf = 0
+    var limsup = 0
+    function verificar() {
+        liminf = Number(ipt_liminf.value)
+        limsup = Number(ipt_limsup.value)
+        var erro = "no"
+
+        if (Number.isNaN(liminf)) {
+            div_msg.innerHTML = 'Limite inferior inválido'
+            erro = "yes"
+        } else if (Number.isNaN(limsup)) {
+            div_msg.innerHTML = 'Limite superior inválido'
+            erro = "yes"
+        } else if (liminf <= 1) {
+            div_msg.innerHTML = `<br>O limite inferior deve ser maior do que 1`
+            erro = "yes"
+        } else if (limsup >= 100) {
+            div_msg.innerHTML = `<br>O limite superior deve ser menor do que 100`
+            erro = "yes"
+        } else if (limsup < liminf) {
+            div_msg.innerHTML = `<br>O limite superior deve ser maior do que o limite inferior`
+            erro = "yes"
+        }
+
+        if (erro != "yes") {
+            contar()
+        }
+        
+    }
+
+    function contar() {
+        for (var i = liminf; i <= limsup; i++) {
+            if (i % 2) {
+                div_msg.innerHTML += `${i} `
+            }
+        }
+    }
+</script>

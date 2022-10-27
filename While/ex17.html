@@ -1,0 +1,59 @@
+<!-- 16. Crie um programa que simule a entrada de caronas num carro:
+a) Pergunte ao usuário quantas pessoas, vão entrar no carro
+b) Ao clicar num botão "#Partiu Carona"...
+c) Exiba, debaixo do botão, frases como estas:
+Entrou o 1º passageiro (que é o(a) motorista)
+Entrou o 2º passageiro
+Entrou o 3º passageiro
+Entrou o 4º passageiro
+Entrou o 5º passageiro
+O 6º passageiro terá que esperar!
+O 7º passageiro terá que esperar!
+d) Note que, sempre na frase do 1º passageiro, deve constar ao lado que é motorista
+e) A partir do 6º passageiro, a frase muda, pois o carro só comporta 5 passageiros
+17. Incremente a questão anterior de tal forma que:
+a) Também tenha um campo no qual o usuário indique a capacidade de passageiros
+que o veículo suporta
+b) Ao clicar no botão, as frases só começam a mostrar que o passageiro terá que
+esperar quando a capacidade indicada em a) for excedida -->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ex 17 - Lista 7 WHILE</title>
+</head>
+
+<body>
+    Quantas pessoas vão entrar no carro: <input type="text" id="ipt_pessoas">
+    <br>
+    Quantas pessoas o carro suporta: <input type="text" id="ipt_lim">
+    <br>
+    <button onclick="carona()">#Partiu Carona</button>
+    <br>
+    <div id="div_msg"></div>
+</body>
+
+</html>
+
+<script>
+    function carona() {
+        div_msg.innerHTML = ""
+        var pessoas = ipt_pessoas.value
+        var limite = ipt_lim.value
+        var c = 1
+
+        div_msg.innerHTML = `<br>Entrou o 1º passageiro (que é o motorista)`
+        while (c < pessoas) {
+            c++
+            if (c > limite) { 
+                div_msg.innerHTML += `<br>O ${c}º passageiro terá que esperar!`
+            } else {
+                div_msg.innerHTML += `<br>Entrou o ${c}º passageiro`
+            }
+        }
+    }
+</script>

@@ -22,14 +22,19 @@
 
 <script>
     function malhar() {
+        div_msg.innerHTML = ''
         var dia = 0
         var freq = ipt_dias.value
         // div_msg.innerHTML = `Dia 1 - <b>Musculação</b>`
-        while (dia <= 30) {
-            if (dia % freq == 0) {
-                div_msg.innerHTML += `Dia ${++dia} - <b>Musculação</b><br>`
-            } else {
-                div_msg.innerHTML += `Dia ${++dia} - <b>Comer, dormir, etc</b><br>`
+        if (ipt_dias.value == '' || ipt_dias.value == ' ') {
+            alert('Insira um valor válido!')
+        } else {
+            while (dia <= 30) {
+                if (dia % freq == 0) {
+                    div_msg.innerHTML += `Dia ${++dia} - <b>Musculação</b><br>`
+                } else {
+                    div_msg.innerHTML += `Dia ${++dia} - <b>Comer, dormir, etc</b><br>`
+                }
             }
         }
     }

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ex 19 - Lista 7 WHILE</title>
+</head>
+
+<body>
+    Quantos ônibus precisa pegar: <input type="text" id="ipt_onibus">
+    <br>
+    Quantos trens precisa pegar: <input type="text" id="ipt_trem">
+    <br>
+    Quantos metrôs precisa pegar: <input type="text" id="ipt_metro">
+    <br>
+    <button onclick="trajeto()">Partiu trajeto</button>
+    <br>
+    <div id="div_msg"></div>
+</body>
+
+</html>
+
+<script>
+    function trajeto() {
+        var on = ipt_onibus.value
+        var tr = ipt_trem.value
+        var met = ipt_metro.value
+        var cont = 0
+        div_msg.innerHTML = ''
+        while (cont < on || cont < tr || cont < met) { 
+            cont++
+            if (cont <= on) {
+                div_msg.innerHTML += `<br><span style="color: #ff0000">Pegando o ${cont}º busão.</span> `
+                if (cont == 2) {
+                    div_msg.innerHTML += `Começando a cansar`
+                } else if (cont >= 3) {
+                    div_msg.innerHTML += `Já cansado!`
+                }
+            }
+            if (cont <= tr) {
+                div_msg.innerHTML += `<br><span style="color: #00ff00">Pegando o ${cont}º trem.</span> `
+                if (cont == 2) {
+                    div_msg.innerHTML += `Começando a cansar`
+                } else if (cont >= 3) {
+                    div_msg.innerHTML += `Já cansado!`
+                }
+            }
+            if (cont <= met) {
+                div_msg.innerHTML += `<br><span style="color: #0000ff">Pegando o ${cont}º metro.</span> `
+                if (cont == 2) {
+                    div_msg.innerHTML += `Começando a cansar`
+                } else if (cont >= 3) {
+                    div_msg.innerHTML += `Já cansado!`
+                }
+            }
+        }
+    }
+</script>

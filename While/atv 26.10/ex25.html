@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marco Nômico</title>
+</head>
+
+<body>
+    Insira o valor já guardado: <input type="text" id="ipt_guardado" autofocus>
+    <br>
+    Insira o valor a poupar: <input type="text" id="ipt_poupado">
+    <br>
+    Insira a quantidade de meses: <input type="text" id="ipt_mes">
+    <br>
+    Insira o percentual de juros mensal: <input type="text" id="ipt_pjuros">
+    <br>
+    <button onclick="poupar()">Vamos poupar</button>
+    <br>
+    <div id="div_msg"></div>
+</body>
+
+</html>
+
+<script>
+    var guardado = 0
+    var poupado = 0
+    var meses = 0
+    var pjuros = 0
+    function poupar() {
+        div_msg.innerHTML = ''
+        guardado = Number(ipt_guardado.value)
+        poupado = Number(ipt_poupado.value)
+        meses = Number(ipt_mes.value)
+        pjuros = Number(ipt_pjuros.value)
+        erro = 'no'
+
+        if (Number.isNaN(guardado) || Number.isNaN(poupado) || Number.isNaN(meses) || Number.isNaN(pjuros)) {
+            alert("Insira valores numéricos válidos para os campos!")
+            erro = 'yes'
+        }
+        if (poupado <= 0) {
+            alert("O valor a poupar deve ser maior do que 0")
+            erro = 'yes'
+        }
+        if (meses <= 10) {
+            alert("A quantidade de meses deve ser maior do que 10")
+            erro = 'yes'
+        }
+        if (pjuros < 0.5 || pjuros > 2) {
+            alert("O juros deve estar entre 0.5 e 2")
+            erro = 'yes'
+        }
+        if (erro != 'yes') {
+            calcular()
+        }
+        ipt_guardado.value = ''
+        ipt_mes.value = ''
+        ipt_pjuros.value = ''
+        ipt_poupado.value = ''
+    }
+
+    function calcular() {
+        var cont = 0
+        var saldoI = guardado
+
+        while (cont < meses) {
+            saldoF = saldoI + (saldoI * pjuros / 100) + poupado
+            div_msg.innerHTML += `
+                              <br><b>Mês ${++cont}</b>
+                              <br>Saldo inicial: ${saldoI.toFixed(2)}
+                              <br>Saldo final: ${saldoF.toFixed(2)}`
+            saldoI = saldoF
+        }
+        var rendimento = saldoF - (guardado + poupado * meses)
+        div_msg.innerHTML += `<br><br>
+                              Você começou com R$${guardado}
+                          <br>Depositou R$${poupado*meses}
+                          <br>E agora você tem R$${saldoF.toFixed(2)}
+                          <br>Neste período, sua conta rendeu R$${rendimento.toFixed(2)}
+                          <br>Sua rentabilidade foi de ${(rendimento/(poupado * meses + guardado) * 100).toFixed(2)}%`
+    }
+</script>

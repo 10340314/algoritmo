@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>20.10.22 Exercício</title>
+</head>
+
+<body>
+    Insira o limite inferior da amostragem: <input type="text" id="ipt_liminf" autofocus>
+    <br>
+    Insira o limite superior da amostragem: <input type="text" id="ipt_limsup">
+    <br>
+    Insira o número a ser testado a divisibilidade: <input type="text" id="ipt_num">
+    <br>
+    <button onclick="verificar()">Contar</button>
+    <br>
+    <div id="div_msg"></div>
+</body>
+
+</html>
+
+<script>
+    var liminf = 0
+    var limsup = 0
+    var num = 0
+
+    function verificar() {
+        div_msg.innerHTML = ''
+        liminf = Number(ipt_liminf.value)
+        limsup = Number(ipt_limsup.value)
+        num = Number(ipt_num.value)
+        var erro = "no"
+
+        if (Number.isNaN(liminf)) {
+            alert("Insira um número válido para o campo de limite inferior!")
+            erro = "yes"
+        }
+        if (Number.isNaN(limsup)) {
+            alert("Insira um número válido para o campo de limite superior!")
+            erro = "yes"
+        }
+        if (Number.isNaN(num)) {
+            alert("Insira um número válido para o campo do número a ser testado!")
+            erro = "yes"
+        }
+        if (liminf < 2) {
+            alert("O limite inferior deve ser maior do que 1")
+            erro = "yes"
+        }
+        if (limsup > 99) {
+            alert("O limite superior deve ser menor do que 100")
+            erro = "yes"
+        }
+        if (limsup < liminf) {
+            alert("O limite superior deve ser maior do que o inferior")
+            erro = "yes"
+        }
+        if (num < 3 || num > 10) {
+            alert("O número deve estar entre 3 e 10")
+            erro = "yes"
+        }
+        if (erro != "yes") {
+            resultado()
+        }
+        ipt_liminf.value = ''
+        ipt_limsup.value = ''
+        ipt_num.value = ''
+    }
+
+    function resultado() {
+        var cont = liminf
+        var menor = 0
+        var maior = 0
+        var media = 0
+        var soma = 0
+        var qtd = 0
+
+        while (cont <= limsup) {
+            if (cont % num == 0) {
+                qtd++
+                soma += cont
+                div_msg.innerHTML += `${cont}`
+                if (cont + num <= limsup) {
+                    div_msg.innerHTML += `, `
+                }
+                if (qtd == 1) {
+                    maior = cont
+                    menor = cont
+                } else if (cont > maior) {
+                    maior = cont
+                } else if (cont < menor) {
+                    menor = cont
+                }
+            }
+            cont++
+        }
+        media = soma / qtd
+        div_msg.innerHTML += `
+                            <br>QUANTIDADE TOTAL DE NÚMEROS EXIBIDOS: ${qtd}
+                            <br>SOMATÓRIO DOS NÚMEROS EXIBIDOS: ${soma}
+                            <br>MÉDIA DOS NÚMEROS EXIBIDOS: ${media}
+                            <br>MAIOR NÚMERO EXIBIDO: ${maior}
+                            <br>MENOR NÚMERO EXIBIDO: ${menor}`
+    }
+</script>

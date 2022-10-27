@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elefante</title>
+</head>
+
+<body>
+    Informe a quantidade de elefantes: <input type="text" id="ipt_elefante">
+    <br>
+    <button onclick="elefantar()">Atazanar a médium</button>
+    <div id="div_msg"></div>
+</body>
+
+</html>
+
+<script>
+    function elefantar() {
+        div_msg.innerHTML = ''
+        var c = 1
+        var repetir = 1
+        var elefante = ipt_elefante.value
+
+        if (elefante > 1) {
+            while (c < elefante) {
+                repetir = 1
+                div_msg.innerHTML += `1 elefante incomoda muita gente`
+                div_msg.innerHTML += `<br>${c+1} elefantes `
+                while (repetir <= c+1) {
+                    div_msg.innerHTML += ` incomodam,`
+                    repetir++
+                }
+                div_msg.innerHTML += ` muito mais!<br>`
+                c++
+            }
+        } else {
+            div_msg.innerHTML = `1 elefante incomoda muita gente.`
+        }
+    }
+</script>

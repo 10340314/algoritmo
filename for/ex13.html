@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ex - 13</title>
+</head>
+
+<body>
+    Informe quantas xícaras de café com leite você já tomou na vida:
+    <br>
+    <input type="text" id="ipt_xicara">
+    <br>
+    <button onclick="ver()">Ver a quantidade</button>
+    <br>
+    <div id="div_msg"></div>
+    <!-- <img src="https://thumbs.dreamstime.com/b/colher-de-caf%C3%A9-de-medi%C3%A7%C3%A3o-com-o-p%C3%B3-do-caf%C3%A9-isolado-no-branco-76973485.jpg" alt="" width="50px"> -->
+</body>
+
+</html>
+
+<script>
+    var leite = '<img src="http://www.natuvita.com.br/wp-content/uploads/2017/11/oplolojm.jpg" alt="" width="50px">'
+    var cafe = '<img src="https://thumbs.dreamstime.com/b/colher-de-caf%C3%A9-de-medi%C3%A7%C3%A3o-com-o-p%C3%B3-do-caf%C3%A9-isolado-no-branco-76973485.jpg" alt="" width="50px">'
+
+    function ver() {
+        div_msg.innerHTML = ''
+        var num = Number(ipt_xicara.value)
+        for (var i = 0; i < num; i++) {
+            div_msg.innerHTML += `${leite}`
+            div_msg.innerHTML += `${cafe}`
+            div_msg.innerHTML += `${cafe}`
+            div_msg.innerHTML += '<br>'
+        }
+    }
+</script>

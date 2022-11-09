@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vetor EX 7</title>
+</head>
+
+<body>
+    Informe seu filme favorito: <input type="text" id="ipt_filme">
+    <br>
+    <button onclick="cadastrar()">Cadastrar</button>
+    <br>
+    <div id="div_resultado"></div>
+</body>
+
+</html>
+
+<script>
+    var filmes = []
+    
+    function cadastrar() {
+        var azul = true
+        div_resultado.innerHTML = ''
+        var filme = ipt_filme.value
+        filmes.push(filme)
+
+        for (let i = 0; i < filmes.length; i++) {
+            if (azul) {
+                div_resultado.innerHTML += `<br><span style="color: blue">${filmes[i]}</span>`
+                azul = false
+            } else {
+                div_resultado.innerHTML += `<br><span style="color: red">${filmes[i]}</span>`
+                azul = true
+            }
+        }
+    }
+</script>

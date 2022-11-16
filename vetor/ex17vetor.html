@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vetor EX 17</title>
+</head>
+
+<body>
+    <div id="div_parte1">
+        <h1>Análise de performance de Alunos</h1>
+        Entre com o nome do aluno: <input type="text" id="ipt_nome">
+        <br>
+        Entre com a nota do aluno: <input type="text" id="ipt_nota">
+        <br>
+        <button onclick="registrar()">Registrar</button><button onclick="analisar()">Analisar</button>
+        <br>
+        <div id="div_msg"></div>
+    </div>
+
+    <div id="div_parte2" style="display: none;">
+        <h1>Análise de performance de Alunos - Pesquisa</h1>
+        Entre com o intervalo de notas: <input type="text" placeholder="De" id="ipt_notainf"> <input type="text"
+            placeholder="Até" id="ipt_notasup">
+        <br>
+        <button onclick="pesquisar()">Pesquisar</button>
+        <br>
+        <div id="div_pesquisa"></div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    var registros = []
+    var qtdAlunos = 0
+
+    function registrar() {
+        var erro = false
+        var nota = Number(ipt_nota.value)
+        var nome = ipt_nome.value
+
+        if (nome.length == 0) {
+            erro = true
+            alert("O campo nome deve ser preenchido!")
+        }
+        if (nota < 0 || nota > 10 || Number.isNaN(nota)) {
+            erro = true
+            alert("A nota deve ser um número e estar entre 0 e 10!")
+        }
+        if (nota == '') {
+            erro = true
+            alert("Insira uma nota para este aluno!")
+        }
+        if (erro != true) {
+            for (let i = 0; i < registros.length; i++) {
+                var cont = 0
+                if (registros[i].nome == nome) {
+                    cont++
+                    break
+                }
+            }
+            if (cont) {
+                alert("Você não pode inserir duas notas para o mesmo aluno!")
+            } else {
+                registros.push({ "nome": nome, "nota": nota })
+                qtdAlunos++
+                div_msg.innerHTML = ''
+
+                for (let i = registros.length - 1; i >= 0; i--) {
+                    div_msg.innerHTML += `Nome: ${registros[i].nome} | Nota: ${registros[i].nota}<br>`
+                }
+            }
+        }
+        ipt_nome.value = ''
+        ipt_nota.value = ''
+    }
+
+    function analisar() {
+        if (registros.length == 0) {
+            alert("Você não registrou nenhum aluno!")
+        } else {
+            div_parte1.style.display = "none"
+            div_parte2.style.display = "block"
+        }
+    }
+
+    function pesquisar() {
+        var notaInf = Number(ipt_notainf.value)
+        var notaSup = Number(ipt_notasup.value)
+        var erro = false
+
+        if (notaInf < 0 || notaInf > 10 || Number.isNaN(notaInf)) {
+            alert("O primeiro campo do intervalo deve estar entre 0 e 10 e ser um número!")
+            erro = true
+        }
+        if (notaInf > notaSup) {
+            alert("O primeiro campo do intervalo deve ser menor ou igual ao segundo campo!")
+            erro = true
+        }
+        if (notaSup < 0 || notaSup > 10 || Number.isNaN(notaSup)) {
+            alert("O segundo campo do intervalo deve estar entre 0 e 10 e ser um número")
+            erro = true
+        }
+
+        if (erro != true) {
+            var somaNotas = 0
+            var qtdListados = 0
+            var maior = 0
+            var menor = 0
+            var media = 0
+            for (let i = 0; i < registros.length; i++) {
+                if (registros[i].nota >= notaInf && registros[i].nota <= notaSup) {
+                    if (qtdListados == 0) {
+                        maior = registros[i].nota
+                        menor = registros[i].nota
+                    } else if (registros[i].nota > maior) {
+                        maior = registros[i].nota
+                    } else if (registros[i].nota < menor) {
+                        menor = registros[i].nota
+                    }
+                    div_pesquisa.innerHTML += `<br>O aluno ${registros[i].nome} ficou com a nota ${registros[i].nota}`
+                    qtdListados++
+                    somaNotas += registros[i].nota
+                }
+            }
+            media ? somaNotas / qtdListados : media
+            div_pesquisa.innerHTML += `<br>Total de alunos registrados: ${qtdAlunos}
+                                       <br>Total de alunos listados: ${qtdListados}
+                                       <br>Maior nota: ${maior}
+                                       <br>Menor nota: ${menor}
+                                       <br>Média da nota: ${media}`
+        }
+    }
+</script>

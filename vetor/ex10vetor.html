@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vetor EX 10</title>
+</head>
+
+<body>
+    Digite a linha de ônibus: <input type="text" id="ipt_onibus" autofocus> <button onclick="gravar()">Gravar
+        busão</button>
+    <br>
+    Pesquise por uma linha: <input type="text" id="ipt_pesquisa"> <button onclick="pesquisar()">Pesquisar</button>
+    <br>
+    <div id="div_mensagem"></div>
+</body>
+
+</html>
+
+<script>
+    var onibus = []
+
+    function gravar() {
+        var busao = ipt_onibus.value
+        if (busao != '') {
+            onibus.push(busao)
+            ipt_onibus.value = ''
+            div_mensagem.innerHTML = ''
+            for (let i = onibus.length - 1; i >= 0; i--) {
+                div_mensagem.innerHTML += `<br>${onibus[i]}`
+            }
+        } else {
+            alert("Insira um busão válido")
+        }
+    }
+
+    function pesquisar() {
+        var pesquisa = ipt_pesquisa.value
+        if (pesquisa == '') {
+            alert("Insira uma pesquisa válida")
+        } else if (onibus.length != 0) {
+            if (onibus.indexOf(pesquisa) == -1) {
+                div_mensagem.innerHTML += "<br>Você nunca pegou essa linha"
+                ipt_pesquisa.value = ''
+            } else {
+                var posicoes = []
+                var cont = 0
+                for (let i = 0; i < onibus.length; i++) {
+                    if (onibus[i] == pesquisa) {
+                        cont++
+                        posicoes.push(i + 1)
+                    }
+                }
+                div_mensagem.innerHTML += `<br>Você já pegou essa linha ${cont} vezes, nessa ordem: ${posicoes}`
+            }
+        } else {
+            alert("Você não inseriu nenhum ônibus")
+        }
+        ipt_pesquisa.value = ''
+    }
+</script>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vetor EX 12</title>
+</head>
+
+<body>
+    Digite o nome de um filho: <input type="text" id="ipt_filho">
+    <br>
+    <button onclick="cadastrar()">Cadastrar</button>
+    <button onclick="atualizar()">Atualizar Familia</button>
+    <br>
+    <div id="div_msg"></div>
+</body>
+
+</html>
+
+<script>
+    var filhos = []
+    
+    function cadastrar() {
+        var filho = ipt_filho.value
+        if (filhos.indexOf(filho) != -1) {
+            alert("Não pode mais de um filho com o mesmo nome!")
+        } else if (filho == '') {
+            alert("Insira um nome válido!")
+        } else {
+            filhos.push(filho)
+        }
+        ipt_filho.value = ''
+    }
+
+    function atualizar() {
+        var qtdFilhos = filhos.length
+        if (qtdFilhos) {
+            var escolaParticular = (qtdFilhos * 3000).toFixed(2)
+            var escolaPublica = (qtdFilhos * 1500).toFixed(2)
+            div_msg.innerHTML = `Você tem ${qtdFilhos} filhos.<br>
+                                 Seu custo mensal será aproximadamente R$${escolaParticular} se colocar eles em escola particular ou R$${escolaPublica} se eles estudarem em escola pública.`
+        } else {
+            alert("Você não inseriu nenhum filho!")
+        }
+    }
+</script>

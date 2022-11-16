@@ -25,7 +25,11 @@
         var azul = true
         div_resultado.innerHTML = ''
         var filme = ipt_filme.value
-        filmes.push(filme)
+        if (filme != '') {
+            filmes.push(filme)
+        } else {
+            alert('Insira um nome de um filme válido!')
+        }
 
         for (let i = 0; i < filmes.length; i++) {
             if (azul) {

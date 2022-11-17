@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 2</title>
+</head>
+
+<body>
+    <button onclick="sortear()">Sortear time</button>
+    <br>
+    <img src="" alt="" id="img_time" style="max-height: 150px;">
+</body>
+
+</html>
+
+<script>
+    var times = ["https://http2.mlstatic.com/D_NQ_NP_659396-MLB31045370256_062019-O.jpg", "https://a.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/2026.png", "https://a.espncdn.com/i/teamlogos/soccer/500/2029.png", "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Santos_logo.svg/1200px-Santos_logo.svg.png"]
+
+    function sortear() {
+        var time = (Math.random() * 3).toFixed(0)
+        console.log(time)
+        img_time.src = times[time]
+    }
+</script>

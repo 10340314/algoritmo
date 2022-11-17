@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 5</title>
+</head>
+
+<body>
+    Escolha a sua mão: 
+    <select name="" id="sel_mao">
+        <option value="0">Pedra</option>
+        <option value="1">Papel</option>
+        <option value="2">Tesoura</option>
+    </select>
+    <br>
+    Quantidade de rodadas: <input type="text" id="ipt_rodadas">
+    <br>
+    <button onclick="jogar()">Jogar</button>
+    <br>
+    <img src="" alt="" id="img_mao" style="max-height: 200px;">
+    <img src="" alt="" id="img_mao_usuario" style="max-height: 200px;">
+</body>
+
+</html>
+
+<script>
+    var jogadas = ["https://www.nicepng.com/png/detail/6-61708_rock-rock-paper-scissors-clipart.png", "https://www.pngitem.com/pimgs/m/266-2667252_transparent-rock-paper-scissors-clipart-rock-paper-scissors.png","https://www.kindpng.com/picc/m/502-5025794_rock-paper-scissors-clipart-hd-png-download.png"]
+
+    function jogar() {
+        var maoUsuario = sel_mao.value
+        img_mao_usuario.src = jogadas[maoUsuario]
+        var totalRodadas = ipt_rodadas.value
+        var resultados = {"vitorias": 0, "empates": 0, "derrotas": 0}
+
+        for (let i = 0; i < totalRodadas; i++) {
+            var maoComputador = Math.floor(Math.random() * 3)
+            maoComputador == maoUsuario ? resultados.empates++ 
+        }
+
+    }
+</script>

@@ -66,7 +66,6 @@
     }
 
     function mostrar() {
-        var cont = liminf
         var qtd = 0
         var media = 0
         var maior = 0
@@ -74,7 +73,7 @@
         var soma = 0
         var divisivel = 0
 
-        while (cont <= limsup) {
+        for(var cont = liminf; cont <= limsup; cont++){
             // if (!(cont % n1 || cont % n2)) {
             // se qualquer um dos dois forem diferentes de 0, retorna true
             // se os dois forem iguais a 0, retorna false
@@ -98,7 +97,6 @@
                 }
             }
             divisivel = 0
-            cont++
         }
         media = soma / qtd
 

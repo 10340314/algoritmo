@@ -20,12 +20,24 @@
         <div id="div_msg"></div>
     </div>
 
-    <div id="div_parte2" style="display: none;">
+    <!-- <div id="div_parte2" style="display: none;">
         <h1>Análise de performance de Alunos - Pesquisa</h1>
         Entre com o intervalo de notas: <input type="text" placeholder="De" id="ipt_notainf"> <input type="text"
             placeholder="Até" id="ipt_notasup">
         <br>
         <button onclick="pesquisar()">Pesquisar</button>
+        <br>
+        <div id="div_pesquisa"></div>
+    </div> -->
+
+    <div id="div_parte2" style="display: none;">
+        <h1>Professora Alice</h1>
+        Informe a nota de pesquisa: <input type="text" id="ipt_notapesq">
+        <br>
+        <button onclick="igual()">Igual</button>
+        <button onclick="maior()">Maior</button>
+        <button onclick="menor()">Menor</button>
+        <button onclick="diff()">Diferente</button>
         <br>
         <div id="div_pesquisa"></div>
     </div>
@@ -50,7 +62,7 @@
             erro = true
             alert("A nota deve ser um número e estar entre 0 e 10!")
         }
-        if (nota == '') {
+        if (ipt_nota.value.length == 0) {
             erro = true
             alert("Insira uma nota para este aluno!")
         }
@@ -134,4 +146,78 @@
                                        <br>Média da nota: ${media}`
         }
     }
+
+    function igual() {
+        div_pesquisa.innerHTML = ''
+        var ax_nota = Number(ipt_notapesq.value)
+        let cont = 0
+        if (Number.isNaN(ax_nota) || ax_nota < 0 || ax_nota > 10 || ipt_notapesq.value.length == 0) {
+            alert("Insira uma nota de pesquisa válida!")
+        }
+        for (let i = 0; i < registros.length; i++) {
+            if (ax_nota == registros[i].nota) {
+                div_pesquisa.innerHTML += `<br>Aluno: ${registros[i].nome} || Nota: ${registros[i].nota}`
+                cont++
+            }
+        }
+        if (!cont) {
+            div_pesquisa.innerHTML = `Não existe nenhuma nota que se encaixa nessa condição`
+        }
+    }
+
+    function maior() {
+        div_pesquisa.innerHTML = ''
+        var ax_nota = Number(ipt_notapesq.value)
+        let cont = 0
+        if (Number.isNaN(ax_nota) || ax_nota < 0 || ax_nota > 10 || ipt_notapesq.value.length == 0) {
+            alert("Insira uma nota de pesquisa válida!")
+        }
+        for (let i = 0; i < registros.length; i++) {
+            if (ax_nota < registros[i].nota) {
+                div_pesquisa.innerHTML += `<br>Aluno: ${registros[i].nome} || Nota: ${registros[i].nota}`
+                cont++
+            }
+        }
+        if (!cont) {
+            div_pesquisa.innerHTML = `Não existe nenhuma nota que se encaixa nessa condição`
+        }
+    }
+
+    function menor() {
+        div_pesquisa.innerHTML = ''
+        var ax_nota = Number(ipt_notapesq.value)
+        let cont = 0
+        if (Number.isNaN(ax_nota) || ax_nota < 0 || ax_nota > 10 || ipt_notapesq.value.length == 0) {
+            alert("Insira uma nota de pesquisa válida!")
+        }
+        for (let i = 0; i < registros.length; i++) {
+            if (ax_nota > registros[i].nota) {
+                div_pesquisa.innerHTML += `<br>Aluno: ${registros[i].nome} || Nota: ${registros[i].nota}`
+                cont++
+            }
+        }
+        if (!cont) {
+            div_pesquisa.innerHTML = `Não existe nenhuma nota que se encaixa nessa condição`
+        }
+    }
+
+    function diff() {
+        div_pesquisa.innerHTML = ''
+        var ax_nota = Number(ipt_notapesq.value)
+        let cont = 0
+        if (Number.isNaN(ax_nota) || ax_nota < 0 || ax_nota > 10 || ipt_notapesq.value.length == 0) {
+            alert("Insira uma nota de pesquisa válida!")
+        }
+        for (let i = 0; i < registros.length; i++) {
+            if (ax_nota != registros[i].nota) {
+                div_pesquisa.innerHTML += `<br>Aluno: ${registros[i].nome} || Nota: ${registros[i].nota}`
+                cont++
+            }
+        }
+        if (!cont) {
+            div_pesquisa.innerHTML = `Não existe nenhuma nota que se encaixa nessa condição`
+        }
+    }
+
+
 </script>

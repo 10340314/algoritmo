@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corrida mixuruca</title>
+</head>
+
+<body>
+    Carro 1: <input type="text" id="ipt_car1">
+    <br>
+    Carro 2: <input type="text" id="ipt_car2">
+    <br>
+    Carro 3: <input type="text" id="ipt_car3">
+    <br>
+    <button onclick="verificar()">Iniciar corrida!</button>
+    <br>
+    <div id="div_resultado"></div>
+</body>
+
+</html>
+
+<script>
+    var carros = []
+
+    function verificar() {
+        carros = []
+        div_resultado.innerHTML = ''
+        var erro = false
+        var carro1 = ipt_car1.value
+        var carro2 = ipt_car2.value
+        var carro3 = ipt_car3.value
+
+        if (carro1 == "" || carro2 == "" || carro3 == "") {
+            alert("Insira um nome para os corredores")
+            erro = true
+        }
+        if (carro1 == carro2 || carro1 == carro3 || carro2 == carro3) {
+            alert("Dois corredores com nomes iguais")
+            erro = true
+        }
+        if (!erro) {
+            carros.push({ "nome": carro1, "combustivel": 50, "tempo": 0 })
+            carros.push({ "nome": carro2, "combustivel": 50, "tempo": 0 })
+            carros.push({ "nome": carro3, "combustivel": 50, "tempo": 0 })
+            corrida()
+        }
+        ipt_car1.value = ''
+        ipt_car2.value = ''
+        ipt_car3.value = ''
+    }
+
+    function corrida() {
+        var voltas = []
+        var v1, v2, v3, t1, t2, t3, c1, c2, c3
+
+        for (let i = 0; i < 10; i++) {
+            v1 = (Math.random() * 40 + 230).toFixed(0)
+            c1 = (v1 / 250 * 5).toFixed(2)
+            if (carros[0].combustivel - c1 <= 0) {
+                carros[0].combustivel = 0
+            } else {
+                carros[0].combustivel -= c1
+                t1 = (20 / v1).toFixed(2)
+                carros[0].tempo += Number(t1) * 60
+            }
+
+            v2 = (Math.random() * 40 + 230).toFixed(0)
+            c2 = (v2 / 250 * 5).toFixed(2)
+            if (carros[1].combustivel - c2 <= 0) {
+                carros[1].combustivel = 0
+            } else {
+                carros[1].combustivel -= c2
+                t2 = (20 / v2).toFixed(2)
+                carros[1].tempo += Number(t2) * 60
+            }
+
+            v3 = (Math.random() * 40 + 230).toFixed(0)
+            c3 = (v3 / 250 * 5).toFixed(2)
+            if (carros[2].combustivel - c3 <= 0) {
+                carros[2].combustivel = 0
+            } else {
+                carros[2].combustivel -= c3
+                t3 = (20 / v3).toFixed(2)
+                carros[2].tempo += Number(t3) * 60
+            }
+            
+            voltas.push
+                (`${carros[0].nome} - Tempo: ${t1}, Combustível ${c1} || ${carros[1].nome} - Tempo ${t2}, Combustível ${c2} || ${carros[2].nome} - Tempo: ${t3}, Combustível ${c3}`)
+
+        }
+
+        for (let i = 9; i >= 1; i--) {
+            div_resultado.innerHTML += `<br>Volta ${i}: ${voltas[i - 1]}`
+        }
+
+        // todo: adicionar resultado final - primeiro lugar, segundo lugar, terceiro lugar
+        
+        div_resultado.innerHTML +=
+            `<br>
+        <br>Corredor 1 ${carros[0].nome} - Combustível: ${carros[0].combustivel} - Tempo: ${carros[0].tempo}
+        <br>Corredor 2 ${carros[1].nome} - Combustível: ${carros[1].combustivel} - Tempo: ${carros[1].tempo}
+        <br>Corredor 3 ${carros[2].nome} - Combustível: ${carros[2].combustivel} - Tempo: ${carros[2].tempo}`
+    }
+</script>

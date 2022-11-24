@@ -97,6 +97,26 @@
         }
 
         // todo: adicionar resultado final - primeiro lugar, segundo lugar, terceiro lugar
+        var aux
+        if (carros[0].combustivel > carros[1].combustivel) {
+            aux = carros[1]
+            carros[1] = carros[0]
+            carros[0] = aux
+        }
+        if (carros[1].combustivel > carros[2].combustivel) {
+            aux = carros[2]
+            carros[2] = carros[1]
+            carros[1] = aux
+        }
+        if (carros[1].combustivel < carros[0].combustivel) {
+            aux = carros[0]
+            carros[0] = carros[1]
+            carros[1] = aux
+        }
+
+        console.log(carros)
+        
+        
         
         div_resultado.innerHTML +=
             `<br>

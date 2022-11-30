@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turfe</title>
+</head>
+
+<body>
+
+    <div id="bemVindo" class="bemVindo">
+        <h1>Bem vindo ao Turfe!</h1>
+        <button onclick="comecar()">Começar corrida</button>
+    </div>
+
+    <div id="tela1" class="tela1">
+        <h2>Digite a quantidade de cavalos que vão correr</h2>
+        <input type="text" id="ipt_qtdCavalos">
+        <h2>Digite a quantidade de voltas</h2>
+        <input type="text" id="ipt_qtdVoltas">
+        <br>
+        <button onclick="next()">Próximo</button>
+    </div>
+
+    <div id="tela2" class="tela2">
+        <h2>Digite o nome de cada cavalo:</h2>
+        <input type="text" id="ipt_nomeCavalo">
+        <br>
+        <button id="btn_inserir" onclick="inserir()">Inserir</button>
+        <button onclick="next2()">Proximo</button>
+        <div id="msg"></div>
+    </div>
+
+    <div id="tela3" class="tela3">
+        <h2>Corrida</h2>
+        <button onclick="darVolta()">Dar volta</button>
+        <br>
+        <div id="msg2"></div>
+    </div>
+    
+</body>
+
+</html>
+
+<script>
+    var cavalo = []
+    var tempo = []
+    var voltas = []
+    
+    var qtd_cavalo = 0
+    var qtd_voltas = 0
+    var contador = 0
+    var index = 0
+
+    function comecar() {
+        bemVindo.style.display = "none"
+        tela1.style.display = "block"
+    }
+
+    function next() {
+        qtd_cavalo = Number(ipt_qtdCavalos.value)
+        qtd_voltas = Number(ipt_qtdVoltas.value)
+        // tela1.style.display = "none"
+        // tela2.style.display = "block"
+    }
+
+    function inserir() {
+        var nome = ipt_nomeCavalo.value
+        console.log(contador)
+        if (contador < qtd_cavalo) {
+            alert("Você inseriu um cavalo")
+
+            cavalo.push(nome)
+            tempo.push(0)
+            ipt_nomeCavalo.value = ''
+            msg.innerHTML += `<br>Nome do ${contador + 1}º cavalo: ${cavalo[contador]}`
+            contador++
+
+            if (contador == qtd_cavalo) {
+                alert("Você inseriu todos os cavalos")
+                btn_inserir.style.display = "none"
+            }
+        }
+    }
+
+    function next2() {
+        tela2.style.display = "none"
+        tela3.style.display = "block"
+    }
+
+    function darVolta() {
+        msg2.innerHTML += `<br>Volta ${index + 1}:` 
+        for (let i = 0; i < qtd_cavalo; i++) {
+            var tempoCavalo = Number((Math.random() * 3 + 7).toFixed(2))
+            tempo[i] += tempoCavalo
+            msg2.innerHTML += `<br>Cavalo ${cavalo[i]} - ${tempoCavalo} - ${(tempo[i])}`
+            
+        }
+
+        index++
+    }
+</script>

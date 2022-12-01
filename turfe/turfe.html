@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turfe</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="main">
+        <img src="gif2.gif" alt="" id="gifYoshi">
+        <div id="bemVindo" class="bemVindo">
+            <h1>Bem vinde ao Turfe!</h1>
+            <button onclick="comecar()">começar corrida</button>
+        </div>
+
+        <div id="tela1" class="tela1" style="display: none">
+            <h2>Digite a quantidade de cavalos que vão correr</h2>
+            <input type="text" id="ipt_qtdCavalos">
+            <h2>Digite a quantidade de voltas</h2>
+            <input type="text" id="ipt_qtdVoltas">
+            <br>
+            <button onclick="next()">próximo</button>
+        </div>
+
+        <div id="tela2" class="tela2" style="display: none">
+            <h2 id="h2_nome">Digite o nome de cada cavalo:</h2>
+            <h2 id="h2_cavalos" style="display: none; font-size: 30px; margin-bottom: 0px;">Cavalos inseridos na
+                corrida:</h2>
+            <input type="text" id="ipt_nomeCavalo">
+            <div id="msg" class="msg"></div>
+            <button id="btn_inserir" onclick="inserir()">Inserir</button>
+            <button onclick="next2()">Proximo</button>
+        </div>
+        <div id="background" class="background" style="display: none;">
+            <div id="tela3" class="tela3" style="display: none">
+                <div class="ranking" id="ranking">
+                    <h1>Ranking</h1>
+                    <button id="again" class="again" onclick="reset()">Jogar Novamente</button>
+                    <div class="posicoes">
+                        <div class="thirdplace">
+                            <span>3º lugar: <span id="span_terceiro">-</span></span>
+                            <img src="gif3.gif" alt="">
+                        </div>
+                        <div class="firstplace">
+                            <span>1º lugar: <span id="span_primeiro">-</span></span>
+                            <img src="gif4.gif" alt="">
+                        </div>
+                        <div class="secondplace">
+                            <span>2º lugar: <span id="span_segundo">-</span></span>
+                            <img src="gif1.gif" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div id="corrida" class="corrida">
+                    <h2>Corrida</h2>
+                    <button onclick="darVolta()">Dar volta</button>
+                    <div id="msg2" class="msg2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    var cavalo = []
+    var tempo = []
+    var voltas = []
+
+    var qtd_cavalo = 0
+    var qtd_voltas = 0
+    var contador = 0
+    var index = 0
+
+    function comecar() {
+        bemVindo.style.display = "none"
+        tela1.style.display = "flex"
+    }
+
+    function next() {
+        qtd_cavalo = Number(ipt_qtdCavalos.value)
+        qtd_voltas = Number(ipt_qtdVoltas.value)
+        var validacao = true
+        if (ipt_qtdCavalos.value == "" || ipt_qtdVoltas.value == "") {
+            alert("Preencha todos os campos")
+            validacao = false
+        }
+
+        if (Number.isNaN(qtd_cavalo) || Number.isNaN(qtd_voltas)) {
+            alert("Preencha apenas com números")
+            validacao = false
+        }
+
+        if (qtd_cavalo < 3 || qtd_voltas < 3) {
+            alert("Deve haver no mínimo três cavalos e três voltas.")
+            validacao = false
+        }
+
+        if (validacao) {
+            tela1.style.display = "none"
+            tela2.style.display = "flex"
+        }
+    }
+
+    function inserir() {
+        var nome = ipt_nomeCavalo.value
+        var validacao = true
+
+        if (ipt_nomeCavalo.value == "") {
+            alert("Preencha o campo")
+            validacao = false
+        }
+
+        if (cavalo.length != 0) {
+            for (let i = 0; i < cavalo.length; i++) {
+                if (cavalo[i] == nome) {
+                    alert("Você já inseriu esse cavalo")
+                    validacao = false
+                    break
+                }
+            }
+        }
+
+        if (validacao) {
+            if (contador < qtd_cavalo) {
+                cavalo.push(nome)
+                tempo.push(0)
+                ipt_nomeCavalo.value = ''
+                msg.innerHTML += `Nome do ${contador + 1}º cavalo: ${cavalo[contador]}`
+                contador++
+
+                if (contador == qtd_cavalo) {
+                    alert("Você inseriu todos os cavalos")
+                    h2_nome.style.display = "none"
+                    h2_cavalos.style.display = "block"
+                    ipt_nomeCavalo.style.display = "none"
+                    btn_inserir.style.display = "none"
+                } else {
+                    msg.innerHTML += `<br>`
+                }
+            }
+        }
+    }
+
+    function next2() {
+        if (contador != qtd_cavalo) {
+            alert("Você ainda não inseriu todos os cavalos!")
+        } else {
+            tela2.style.display = "none"
+            tela3.style.display = "flex"
+            background.style.display = "flex"
+            gifYoshi.style.display = "none"
+        }
+    }
+
+    function darVolta() {
+        ranking.style.display = "flex"
+        if (index < qtd_voltas) {
+            msg2.innerHTML += `<br><span>Volta ${index + 1}:</span>`
+            for (let i = 0; i < qtd_cavalo; i++) {
+                var tempoCavalo = Number((Math.random() * 3 + 7).toFixed(2))
+                tempo[i] += tempoCavalo
+                msg2.innerHTML += `<br>Cavalo ${cavalo[i]} - ${tempoCavalo} - ${(tempo[i]).toFixed(2)}`
+            }
+            index++
+            campeao()
+        } else {
+            alert("FIM DA CORRIDA")
+            corrida.style.display = `none`
+            tela3.style.margin = `0 0 0 24rem`
+            again.style.display = `block`
+        }
+    }
+
+    function campeao() {
+        var aux = 0
+
+        for (let i = 0; i < cavalo.length; i++) {
+            for (let j = i + 1; j < cavalo.length; j++) {
+                if (tempo[i] > tempo[j]) {
+                    aux = tempo[i];
+                    tempo[i] = tempo[j];
+                    tempo[j] = aux;
+
+                    aux = cavalo[i]
+                    cavalo[i] = cavalo[j]
+                    cavalo[j] = aux
+                }
+            }
+        }
+        span_primeiro.innerHTML = cavalo[0]
+        span_segundo.innerHTML = cavalo[1]
+        span_terceiro.innerHTML = cavalo[2]
+        msg2.innerHTML += `<br> ${cavalo[0]}, ${cavalo[1]}, ${cavalo[2]}<br>`
+    }
+
+    function reset() {
+        window.location = "turfe.html"
+    }
+
+</script>

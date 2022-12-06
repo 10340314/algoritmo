@@ -114,14 +114,32 @@
             carros[1] = aux
         }
 
-        console.log(carros)
+        // console.log(carros)
         
-        
+        var podium = []
+        var cont = 0
+        for (let i = 0; i < carros.length; i++) {
+            console.log(`Loop ${i}: Podium - ${JSON.stringify(podium)} - Carro ${i}: ${JSON.stringify(carros[i])}`)
+            if (carros[i].combustivel != 0) {
+                // console.log(carros[i])
+                // console.log(podium)
+                podium.push(carros[i])
+                // console.log(podium)
+                console.log(cont)
+            } else {
+                carros[i].desclassificado = true
+            } 
+        }
+
+        while (cont != 3) {
+            if (carros[cont].desclassificado) podium.push(carros[cont])
+            cont++
+        }
         
         div_resultado.innerHTML +=
-            `<br>
-        <br>Corredor 1 ${carros[0].nome} - Combustível: ${carros[0].combustivel} - Tempo: ${carros[0].tempo}
-        <br>Corredor 2 ${carros[1].nome} - Combustível: ${carros[1].combustivel} - Tempo: ${carros[1].tempo}
-        <br>Corredor 3 ${carros[2].nome} - Combustível: ${carros[2].combustivel} - Tempo: ${carros[2].tempo}`
+            `<h1>PODIUM</h1>
+        <br>1º Lugar ${podium[0].nome} - Combustível: ${(podium[0].combustivel).toFixed(2)} - Tempo: ${(podium[0].tempo).toFixed(2)}
+        <br>2º Lugar ${podium[1].nome} - Combustível: ${(podium[1].combustivel).toFixed(2)} - Tempo: ${(podium[1].tempo).toFixed(2)}
+        <br>3º Lugar ${podium[2].nome} - Combustível: ${(podium[2].combustivel).toFixed(2)} - Tempo: ${(podium[2].tempo).toFixed(2)}`
     }
 </script>

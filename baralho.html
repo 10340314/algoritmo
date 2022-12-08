@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    Pontos Jogador: <span id="span_ptsJogador1"></span>
+    Pontos Adversário: <span id="span_ptsJogador2"></span>
+    <br>
+    <h2>Baralho restante do jogador:</h2>
+    <div id="div_baralho1"></div>
+    <h2>Baralho restante do adversário:</h2>
+    <div id="div_baralho2"></div>
+    <img src="cartas/" alt="">
+    <br>
+    <button onclick="simular()">Simular batalha</button>
+
+    <div id="div_batalha" style="display: flex">
+        <div id="div_cartaj1"></div>
+        <h1>VS</h1>
+        <div id="div_cartaj2"></div>
+    </div>
+</body>
+
+</html>
+
+<script>
+
+    var Baralho = [
+        {
+            nome: 'Deadpool',
+            forca: 1,
+            resistencia: 1,
+            imagem: 'cartas/deadpool.png',
+            usou: false
+        },
+
+        {
+            nome: 'Capitão América',
+            forca: 3,
+            resistencia: 3,
+            imagem: 'cartas/capitao_america.png',
+            usou: false
+        },
+
+        {
+            nome: 'Homem de Ferro',
+            forca: 5,
+            resistencia: 0,
+            imagem: 'cartas/homem_de_ferro.png',
+            usou: false
+        },
+
+        {
+            nome: 'Mercurio',
+            forca: 1,
+            resistencia: 12,
+            imagem: 'cartas/mercurio.png',
+            usou: false
+        },
+
+        {
+            nome: 'Mulher Invisível',
+            forca: 2,
+            resistencia: 2,
+            imagem: 'cartas/mulher_invisivel.png',
+            usou: false
+        },
+
+        {
+            nome: 'Senhor Fantástico',
+            forca: 3,
+            resistencia: 2,
+            imagem: 'cartas/sr_fantastico.png',
+            usou: false
+        },
+
+        {
+            nome: 'Thor',
+            forca: 3,
+            resistencia: 4,
+            imagem: 'cartas/thor.png',
+            usou: false
+        },
+
+        {
+            nome: 'Venom',
+            forca: 3,
+            resistencia: 1,
+            imagem: 'cartas/venom.png',
+            usou: false
+        },
+
+        {
+            nome: 'Viuva Negra',
+            forca: 2,
+            resistencia: 1,
+            imagem: 'cartas/viuva_negra.png',
+            usou: false
+        },
+
+        {
+            nome: 'Wolverine',
+            forca: 2,
+            resistencia: 3,
+            imagem: 'cartas/wolverine.png',
+            usou: false
+        }
+    ]
+
+    var Jogador1 = [];
+
+    var Jogador2 = [];
+
+    while (Jogador1.length != 5) {
+        var Posicao = Math.floor(Math.random() * 10);
+        if (Jogador1.length == 0) {
+            Jogador1.push(Baralho[Posicao])
+        } else {
+            if (Jogador1.indexOf(Baralho[Posicao]) == -1) {
+                Jogador1.push(Baralho[Posicao])
+            }
+        }
+    }
+
+    while (Jogador2.length != 5) {
+        var Posicao = Math.floor(Math.random() * 10);
+        if (Jogador2.length == 0) {
+            Jogador2.push(Baralho[Posicao])
+        } else {
+            if (Jogador2.indexOf(Baralho[Posicao]) == -1) {
+                Jogador2.push(Baralho[Posicao])
+            }
+        }
+    }
+
+    mostrarcartas();
+    
+    function mostrarcartas(){
+
+        div_baralho1.innerHTML = ""
+        div_baralho2.innerHTML = ""
+
+
+        for (let i = 0; i < 5; i++) {
+
+            if(Jogador1[i].usou == false){
+                div_baralho1.innerHTML += `<img src="${Jogador1[i].imagem}" width="100px">`
+            }
+
+            if(Jogador2[i].usou == false){
+                div_baralho2.innerHTML += `<img src="${Jogador2[i].imagem}" width="100px">`
+            }
+            
+        }
+    }
+   
+    function simular() {
+
+        var index = 0;
+
+
+        while (Jogador1[jogar1].usou ==  true || Jogador2[jogar2].usou == true) {
+        var jogar1 = Math.floor(Math.random() * 5)
+        var jogar2 = Math.floor(Math.random() * 5)
+        
+           
+        }
+            div_cartaj1.innerHTML = `<img src="${Jogador1[jogar1].imagem}" width="100px">`;
+            div_cartaj2.innerHTML = `<img src="${Jogador2[jogar2].imagem}" width="100px">`
+            
+            
+            Jogador1[jogar1].usou = true;
+            Jogador2[jogar2].usou = true;
+            
+            
+            mostrarcartas();
+
+        // Prescisa verificar se a carta ja foi utilizada antes ou nao
+       
+        // utilizar um laço while para ficar sorteando
+    }
+
+</script>
